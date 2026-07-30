@@ -952,8 +952,8 @@
                 // تحميل الصور في الخلفية بصمت تام بدون توقف الشاشة أو حدوث شاشة سوداء
                 this.photos.forEach(p => {
                     const img = new Image();
-                    img.src = p.src;
                     img.onload = () => this.imageCache.set(p.src, img);
+                    img.src = p.src;
                 });
 
                 // عداد سريع وسلس جداً يضمن الانتقال المباشر بدون أي تهنيج
@@ -996,16 +996,24 @@
                             resolve();
                         } else {
                             const img = new Image();
-                            img.src = p.src;
+                            
                             img.onload = () => {
                                 this.imageCache.set(p.src, img);
                                 loadedCount++;
                                 resolve();
                             };
+                            
                             img.onerror = () => {
                                 loadedCount++;
                                 resolve();
                             };
+                            
+                            img.src = p.src;
+
+                            if (img.complete && img.naturalWidth !== 0) {
+                                this.imageCache.set(p.src, img);
+                                resolve();
+                            }
                         }
                     });
                 }));
