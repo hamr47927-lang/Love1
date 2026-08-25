@@ -189,7 +189,7 @@
             background: rgba(255,255,255,0.08);
             border-radius: 3px;
             overflow: hidden;
-            margin: 10px 0;
+            margin: 15px 0;
             box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
         }
         .progress-bar {
@@ -291,10 +291,10 @@
         }
 
         .book-container {
-            width: 94%;
-            max-width: 420px;
-            height: 84vh;
-            max-height: 700px;
+            width: 92%;
+            max-width: 440px;
+            height: 82vh;
+            max-height: 680px;
             position: relative;
             display: flex;
             justify-content: center;
@@ -310,7 +310,9 @@
             opacity: 1;
         }
 
-        .book-spine-shadow { display: none !important; }
+        .book-spine-shadow {
+            display: none !important;
+        }
 
         .book-page {
             position: absolute;
@@ -318,13 +320,12 @@
             background: #FFF8E7;
             color: #2b1a24;
             border-radius: 16px;
-            padding: 14px;
+            padding: 18px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             box-shadow: 0 5px 20px rgba(0,0,0,0.2);
             display: none;
-            overflow: hidden;
         }
         .book-page.active-page {
             display: flex;
@@ -370,7 +371,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-shrink: 0;
         }
         .page-counter {
             font-size: 0.85rem;
@@ -394,56 +394,49 @@
             background: rgba(140, 115, 101, 0.3);
         }
 
-        /* تعديلات حاسمة لمنع قص الصورة وعرضها بالكامل */
         .page-img-container {
             flex-grow: 1;
             width: 100%;
-            min-height: 0;
-            background: rgba(0,0,0,0.02);
-            border-radius: 10px;
+            max-height: 60vh;
+            background: transparent;
+            border-radius: 12px;
             overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
-            margin: 6px 0;
+            margin: 8px 0;
             cursor: pointer;
         }
         .page-img-container img {
-            max-width: 100%;
-            max-height: 100%;
-            width: auto;
-            height: auto;
+            width: 100%;
+            height: 100%;
             object-fit: contain;
             z-index: 2;
             position: relative;
-            border-radius: 6px;
         }
 
-        /* تعديلات لضمان ظهور الكلام وعدم خروجه عن الفريم */
         .page-caption-box {
-            height: 95px;
-            min-height: 95px;
-            max-height: 95px;
+            height: 110px;
+            min-height: 110px;
+            max-height: 110px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             overflow-y: auto;
+            scrollbar-width: thin;
             background: rgba(0, 0, 0, 0.03);
             border: 1px solid rgba(0, 0, 0, 0.06);
             border-radius: 10px;
-            padding: 6px 10px;
-            flex-shrink: 0;
-            scrollbar-width: thin;
+            padding: 8px 12px;
         }
         .page-caption {
-            font-size: 16px;
-            line-height: 1.4;
+            font-size: 18px;
+            line-height: 1.5;
             text-align: center;
             color: #33222b;
             font-weight: 600;
-            width: 100%;
         }
 
         .page-final {
@@ -627,7 +620,7 @@
     <div class="modal-overlay" id="thinking-modal">
         <div class="modal-content">
             <p style="font-size: 1.15rem; color: var(--accent-2); margin-bottom: 20px; line-height: 1.7;">
-                وحشتيني اوي .♥️💫
+                وحشاني .♥️💫
             </p>
             <button class="btn-primary" id="modal-close-btn">رجوع</button>
         </div>
@@ -653,7 +646,7 @@
     <section id="screen-start" class="screen hidden">
         <div class="content glass-panel">
             <h1 class="glow-text">❤️ Secret Journey For you </h1>
-        </p> وحشاني</p>
+            <p>وحشتني </p>
             <button class="btn-primary" data-next="screen-password">Start</button>
         </div>
     </section>
@@ -741,8 +734,8 @@
     <section id="screen-end" class="screen hidden">
         <canvas id="confetti-canvas"></canvas>
         <div class="content glass-panel">
-            <h1 class="glow-text">طيب مستنيه اي 🌚😂</h1>
-            <p id="final-forever-text" style="opacity: 0; transition: opacity 1.5s ease; font-size: 1.4rem; color: var(--accent-2);"> تعالي قوليلي ان المفاجاه عجبتك بقي مش عارف انتي لسه بتشوفي الويب ولا لا بس انتي وحشتيني  🥹❤️</p>
+            <h1 class="glow-text">طب مستنيه اي ♥️</h1>
+            <p id="final-forever-text" style="opacity: 0; transition: opacity 1.5s ease; font-size: 1.4rem; color: var(--accent-2);"> تعالي قوليلي ان المفاجاه عجبتك مش عارف انتي لسه بتشوفي الويب دا ولا لا بس لو بتشوفيه حابب اقولك انك وحشتيني اوي   🥹❤️</p>
         </div>
     </section>
 
@@ -757,7 +750,6 @@
                 this.isMusicPlaying = false;
                 this.imageCache = new Map();
                 this.isFullyLoaded = false;
-                this.isFlipping = false;
                 
                 this.photos = [
                     { src: "1.png", caption: "أول عقد يتكتب بينا 😂❤️" },
@@ -812,7 +804,7 @@
             setupAudioTimeLimiters() {
                 const limitAudio = (audio) => {
                     audio.addEventListener('timeupdate', () => {
-                        if (audio.duration && audio.currentTime >= audio.duration - 4) {
+                        if (audio.duration && audio.currentTime >= audio.duration - 5) {
                             audio.currentTime = 0;
                             audio.play().catch(()=>{}); 
                         }
@@ -957,12 +949,14 @@
                 const percentageEl = document.getElementById('loading-percentage');
                 let currentProg = 0;
                 
+                // تحميل الصور في الخلفية بصمت تام بدون توقف الشاشة أو حدوث شاشة سوداء
                 this.photos.forEach(p => {
                     const img = new Image();
-                    img.onload = () => this.imageCache.set(p.src, img);
                     img.src = p.src;
+                    img.onload = () => this.imageCache.set(p.src, img);
                 });
 
+                // عداد سريع وسلس جداً يضمن الانتقال المباشر بدون أي تهنيج
                 const loadInterval = setInterval(() => {
                     currentProg += 4;
                     
@@ -994,22 +988,24 @@
                 progressBar.style.width = '40%';
                 statusText.textContent = '🖼️ تحميل الصور...';
                 
+                let loadedCount = 0;
                 await Promise.all(this.photos.map(p => {
                     return new Promise((resolve) => {
                         if (this.imageCache.has(p.src)) {
+                            loadedCount++;
                             resolve();
                         } else {
                             const img = new Image();
+                            img.src = p.src;
                             img.onload = () => {
                                 this.imageCache.set(p.src, img);
+                                loadedCount++;
                                 resolve();
                             };
-                            img.onerror = () => resolve();
-                            img.src = p.src;
-                            if (img.complete && img.naturalWidth !== 0) {
-                                this.imageCache.set(p.src, img);
+                            img.onerror = () => {
+                                loadedCount++;
                                 resolve();
-                            }
+                            };
                         }
                     });
                 }));
@@ -1206,26 +1202,22 @@
             }
 
             typeWriterCaption(captionEl, fullText) {
-                if (captionEl.typingTimer) {
-                    clearInterval(captionEl.typingTimer);
-                }
-                
+                captionEl.innerHTML = '';
                 let charIdx = 0;
-                captionEl.innerHTML = `<span class="visible-text"></span><span class="hidden-text" style="opacity:0;">${fullText}</span>`;
                 
-                const visibleSpan = captionEl.querySelector('.visible-text');
-                const hiddenSpan = captionEl.querySelector('.hidden-text');
+                if (captionEl.typingTimer) {
+                    clearTimeout(captionEl.typingTimer);
+                }
 
-                captionEl.typingTimer = setInterval(() => {
-                    if (charIdx <= fullText.length) {
-                        visibleSpan.textContent = fullText.substring(0, charIdx);
-                        hiddenSpan.textContent = fullText.substring(charIdx);
-                        if(charIdx % 3 === 0) this.playSound('type-sound');
+                const type = () => {
+                    if (charIdx < fullText.length) {
+                        captionEl.innerHTML += fullText.charAt(charIdx);
+                        if(charIdx % 2 === 0) this.playSound('type-sound');
                         charIdx++;
-                    } else {
-                        clearInterval(captionEl.typingTimer);
+                        captionEl.typingTimer = setTimeout(type, 50);
                     }
-                }, 40);
+                };
+                type();
             }
 
             buildBookStack() {
@@ -1249,6 +1241,8 @@
                     let pageEl = document.createElement('div');
                     pageEl.className = 'book-page';
                     pageEl.dataset.caption = photo.caption;
+                    
+                    let cachedImgSrc = this.imageCache.has(photo.src) ? this.imageCache.get(photo.src).src : photo.src;
 
                     pageEl.innerHTML = `
                         <div class="page-header">
@@ -1259,7 +1253,7 @@
                             <div class="progress-bar" style="width: ${((idx + 1) / totalItems) * 100}%;"></div>
                         </div>
                         <div class="page-img-container">
-                            <img src="${photo.src}" alt="Memory">
+                            <img src="${cachedImgSrc}" alt="Memory" loading="lazy">
                         </div>
                         <div class="page-caption-box">
                             <div class="page-caption"></div>
@@ -1285,36 +1279,20 @@
                 allPages.forEach((page, i) => {
                     page.style.zIndex = allPages.length - i;
                     page.style.transformOrigin = 'left center';
-                    page.style.transition = 'transform 0.5s ease-in-out, opacity 0.4s ease-in-out';
-                    page.style.backfaceVisibility = 'hidden';
-                    page.style.webkitBackfaceVisibility = 'hidden';
-                    page.style.willChange = 'transform, opacity';
+                    page.style.transition = 'transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.6s ease';
                 });
 
                 const updateBookVisuals = () => {
                     allPages.forEach((p, i) => {
                         p.classList.add('active-page');
-                        
                         if (i < activeIdx) {
-                            p.style.transform = 'rotateY(-95deg) scale(0.95)';
+                            p.style.transform = 'rotateY(-180deg)';
                             p.style.opacity = '0';
                             p.style.pointerEvents = 'none';
-                            p.style.zIndex = 0;
-                        } else if (i === activeIdx) {
-                            p.style.transform = 'rotateY(0deg) scale(1)';
-                            p.style.opacity = '1';
-                            p.style.pointerEvents = 'auto';
-                            p.style.zIndex = 10;
-                        } else if (i === activeIdx + 1) {
-                            p.style.transform = 'rotateY(0deg) scale(1)';
-                            p.style.opacity = '1';
-                            p.style.pointerEvents = 'none';
-                            p.style.zIndex = 5;
                         } else {
-                            p.style.transform = 'rotateY(0deg) scale(1)';
-                            p.style.opacity = '0';
-                            p.style.pointerEvents = 'none';
-                            p.style.zIndex = 1;
+                            p.style.transform = 'rotateY(0deg)';
+                            p.style.opacity = '1';
+                            p.style.pointerEvents = (i === activeIdx) ? 'auto' : 'none';
                         }
                     });
                 };
@@ -1334,9 +1312,7 @@
                         if (prevBtn) {
                             prevBtn.addEventListener('click', (e) => {
                                 e.stopPropagation();
-                                if (this.isFlipping) return;
                                 if (activeIdx > 0) {
-                                    this.isFlipping = true;
                                     activeIdx--;
                                     updateBookVisuals();
                                     this.playSound('page-flip-sound');
@@ -1348,7 +1324,6 @@
                                             this.typeWriterCaption(capEl, currentPage.dataset.caption);
                                         }
                                     }
-                                    setTimeout(() => { this.isFlipping = false; }, 400);
                                 }
                             });
                         }
@@ -1378,10 +1353,7 @@
                         return;
                     }
 
-                    if (this.isFlipping) return;
-                    
                     if (activeIdx < allPages.length - 1) {
-                        this.isFlipping = true;
                         activeIdx++;
                         updateBookVisuals();
                         this.playSound('page-flip-sound');
@@ -1393,8 +1365,6 @@
                                 this.typeWriterCaption(capEl, currentPage.dataset.caption);
                             }
                         }
-                        
-                        setTimeout(() => { this.isFlipping = false; }, 400);
                     }
                 };
             }
@@ -1419,7 +1389,7 @@
                         container.appendChild(heartParticle);
                     }
 
-                    const heartMessage = "الموقع دا معمول عشان حاجه بسيطه وهيا اني اقولك بحبك حسيت اني مينفعش اقولها كدا وخلاص كان لازم حاجه حلوه ليكي. انا فكرت كتير الصراحه لان الكلمة دي بيترتب عليها حاجات كتير تانيه ولسه الطريق قدمنا طويل بس موصلتش لاي حاجه غير انا عايزك معايا.. اضغطي علي القلب ❤️";
+                    const heartMessage = "الموقع دا معمول عشان حاجه واحد بس  وهيا اني اقولك اني بحبك.. حسيت اني مينفعش اقولها كدا وخلاص كان لازم حاجه حلوه ليكي. انا فكرت كتير الصراحه لان الكلمة دي بيترتب عليها حاجات كتير تانيه ولسه الطريق قدمنا طويل بس موصلتش لاي حاجه غير اني عايزك معايا.. اضغطي علي القلب ❤️";
                     
                     let charIdx = 0;
                     const typeHeartText = () => {
